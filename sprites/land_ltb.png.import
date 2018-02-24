@@ -2,15 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/land_ltb.png-f492badfee773a8e7dd7ec3bef987a33.stex"
+valid=false
 
 [deps]
 
 source_file="res://sprites/land_ltb.png"
-source_md5="b05d52a902681ac8381cf271473519d3"
-
-dest_files=[ "res://.import/land_ltb.png-f492badfee773a8e7dd7ec3bef987a33.stex" ]
-dest_md5="be4b030c605117542cf485eddc3301c4"
+source_md5="2b34c75947d7dcda8fff9fcbdb1c1027"
 
 [params]
 

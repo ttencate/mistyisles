@@ -1,0 +1,210 @@
+[gd_scene load_steps=35 format=2]
+
+[ext_resource path="res://sprites/land_t.svg" type="Texture" id=1]
+[ext_resource path="res://sprites/land_rb.svg" type="Texture" id=2]
+[ext_resource path="res://sprites/land_lt.svg" type="Texture" id=3]
+[ext_resource path="res://sprites/land_lb.svg" type="Texture" id=4]
+[ext_resource path="res://sprites/land_b.svg" type="Texture" id=5]
+[ext_resource path="res://sprites/land_lrt.svg" type="Texture" id=6]
+[ext_resource path="res://sprites/land_lrb.svg" type="Texture" id=7]
+[ext_resource path="res://sprites/land_rt.svg" type="Texture" id=8]
+[ext_resource path="res://sprites/land_lr.svg" type="Texture" id=9]
+[ext_resource path="res://sprites/land_lrtb.svg" type="Texture" id=10]
+[ext_resource path="res://sprites/land_l.svg" type="Texture" id=11]
+[ext_resource path="res://sprites/land_.svg" type="Texture" id=12]
+[ext_resource path="res://sprites/land_ltb.svg" type="Texture" id=13]
+[ext_resource path="res://sprites/land_r.svg" type="Texture" id=14]
+[ext_resource path="res://sprites/land_rtb.svg" type="Texture" id=15]
+[ext_resource path="res://sprites/land_tb.svg" type="Texture" id=16]
+[ext_resource path="res://sprites/castle.svg" type="Texture" id=17]
+[ext_resource path="res://sprites/harbour.svg" type="Texture" id=18]
+[ext_resource path="res://sprites/lighthouse.svg" type="Texture" id=19]
+[ext_resource path="res://sprites/seagulls.svg" type="Texture" id=20]
+[ext_resource path="res://sprites/whale.svg" type="Texture" id=21]
+[ext_resource path="res://sprites/fish.svg" type="Texture" id=22]
+[ext_resource path="res://sprites/mist_lrtb.svg" type="Texture" id=23]
+[ext_resource path="res://sprites/mist_ltb.svg" type="Texture" id=24]
+[ext_resource path="res://sprites/mist_lrt.svg" type="Texture" id=25]
+[ext_resource path="res://sprites/mist_lt.svg" type="Texture" id=26]
+[ext_resource path="res://sprites/mist_lb.svg" type="Texture" id=27]
+[ext_resource path="res://sprites/mist_lrb.svg" type="Texture" id=28]
+[ext_resource path="res://sprites/mist_rb.svg" type="Texture" id=29]
+[ext_resource path="res://sprites/mist_rtb.svg" type="Texture" id=30]
+[ext_resource path="res://sprites/mist_rt.svg" type="Texture" id=31]
+[ext_resource path="res://sprites/grid.svg" type="Texture" id=32]
+[ext_resource path="res://sprites/guess_land.svg" type="Texture" id=33]
+[ext_resource path="res://sprites/guess_water.svg" type="Texture" id=34]
+
+[node name="Node" type="Node"]
+
+[node name="land_t" type="Sprite" parent="." index="0"]
+
+position = Vector2( 128, 896 )
+texture = ExtResource( 1 )
+
+[node name="land_rb" type="Sprite" parent="." index="1"]
+
+position = Vector2( 384, 384 )
+texture = ExtResource( 2 )
+
+[node name="land_lt" type="Sprite" parent="." index="2"]
+
+position = Vector2( 896, 896 )
+texture = ExtResource( 3 )
+
+[node name="land_lb" type="Sprite" parent="." index="3"]
+
+position = Vector2( 896, 384 )
+texture = ExtResource( 4 )
+
+[node name="land_b" type="Sprite" parent="." index="4"]
+
+position = Vector2( 128, 384 )
+texture = ExtResource( 5 )
+
+[node name="land_lrt" type="Sprite" parent="." index="5"]
+
+position = Vector2( 640, 896 )
+texture = ExtResource( 6 )
+
+[node name="land_lrb" type="Sprite" parent="." index="6"]
+
+position = Vector2( 640, 384 )
+texture = ExtResource( 7 )
+
+[node name="land_rt" type="Sprite" parent="." index="7"]
+
+position = Vector2( 384, 896 )
+texture = ExtResource( 8 )
+
+[node name="land_lr" type="Sprite" parent="." index="8"]
+
+position = Vector2( 640, 128 )
+texture = ExtResource( 9 )
+
+[node name="land_lrtb" type="Sprite" parent="." index="9"]
+
+position = Vector2( 640, 640 )
+texture = ExtResource( 10 )
+
+[node name="land_l" type="Sprite" parent="." index="10"]
+
+position = Vector2( 896, 128 )
+texture = ExtResource( 11 )
+
+[node name="land_" type="Sprite" parent="." index="11"]
+
+position = Vector2( 128, 128 )
+texture = ExtResource( 12 )
+
+[node name="land_ltb" type="Sprite" parent="." index="12"]
+
+position = Vector2( 896, 640 )
+texture = ExtResource( 13 )
+
+[node name="land_r" type="Sprite" parent="." index="13"]
+
+position = Vector2( 384, 128 )
+texture = ExtResource( 14 )
+
+[node name="land_rtb" type="Sprite" parent="." index="14"]
+
+position = Vector2( 384, 640 )
+texture = ExtResource( 15 )
+
+[node name="land_tb" type="Sprite" parent="." index="15"]
+
+position = Vector2( 128, 640 )
+texture = ExtResource( 16 )
+
+[node name="castle" type="Sprite" parent="." index="16"]
+
+position = Vector2( 1152, 384 )
+texture = ExtResource( 17 )
+
+[node name="harbour" type="Sprite" parent="." index="17"]
+
+position = Vector2( 1152, 640 )
+texture = ExtResource( 18 )
+
+[node name="lighthouse" type="Sprite" parent="." index="18"]
+
+position = Vector2( 1152, 128 )
+texture = ExtResource( 19 )
+
+[node name="seagulls" type="Sprite" parent="." index="19"]
+
+position = Vector2( 1408, 640 )
+texture = ExtResource( 20 )
+
+[node name="whale" type="Sprite" parent="." index="20"]
+
+position = Vector2( 1408, 128 )
+texture = ExtResource( 21 )
+
+[node name="fish" type="Sprite" parent="." index="21"]
+
+position = Vector2( 1408, 384 )
+texture = ExtResource( 22 )
+
+[node name="mist_lrtb" type="Sprite" parent="." index="22"]
+
+position = Vector2( 384, 1408 )
+texture = ExtResource( 23 )
+
+[node name="mist_ltb" type="Sprite" parent="." index="23"]
+
+position = Vector2( 640, 1408 )
+texture = ExtResource( 24 )
+
+[node name="mist_lrt" type="Sprite" parent="." index="24"]
+
+position = Vector2( 384, 1664 )
+texture = ExtResource( 25 )
+
+[node name="mist_lt" type="Sprite" parent="." index="25"]
+
+position = Vector2( 640, 1664 )
+texture = ExtResource( 26 )
+
+[node name="mist_lb" type="Sprite" parent="." index="26"]
+
+position = Vector2( 640, 1152 )
+texture = ExtResource( 27 )
+
+[node name="mist_lrb" type="Sprite" parent="." index="27"]
+
+position = Vector2( 384, 1152 )
+texture = ExtResource( 28 )
+
+[node name="mist_rb" type="Sprite" parent="." index="28"]
+
+position = Vector2( 128, 1152 )
+texture = ExtResource( 29 )
+
+[node name="mist_rtb" type="Sprite" parent="." index="29"]
+
+position = Vector2( 128, 1408 )
+texture = ExtResource( 30 )
+
+[node name="mist_rt" type="Sprite" parent="." index="30"]
+
+position = Vector2( 128, 1664 )
+texture = ExtResource( 31 )
+
+[node name="grid" type="Sprite" parent="." index="31"]
+
+position = Vector2( 896, 1152 )
+texture = ExtResource( 32 )
+
+[node name="guess_land" type="Sprite" parent="." index="32"]
+
+position = Vector2( 896, 1408 )
+texture = ExtResource( 33 )
+
+[node name="guess_water" type="Sprite" parent="." index="33"]
+
+position = Vector2( 896, 1664 )
+texture = ExtResource( 34 )
+
+
