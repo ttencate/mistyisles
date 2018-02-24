@@ -9,8 +9,9 @@ func _ready():
 func create_level(name):
 	var level_area = get_node("level_area")
 	
-	var scene = load("res://level_%02d.tscn" % current_level)
+	var scene = load("res://levels/level_%02d.tscn" % current_level)
 	if scene == null:
+		print("You win!")
 		return # TODO win screen
 	
 	level_node = scene.instance()
@@ -38,14 +39,16 @@ func create_level(name):
 	
 	level_node.connect("help_text", self, "help_text")
 	level_node.connect("solved", self, "level_solved")
+	
+	get_node("scroll/in_out").move_in()
 
 func help_text(text):
 	get_node("scroll/help_text").text = text
 
 func level_solved():
-	get_node("scroll/hide").start()
+	get_node("scroll/in_out").move_out()
 
-func _on_scroll_hide_tween_completed( object, key ):
+func _on_in_out_moved_out():
 	get_node("next_level_timer").start()
 
 func _on_next_level_timer_timeout():

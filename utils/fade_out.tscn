@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://fade_in.gd" type="Script" id=1]
+[ext_resource path="res://utils/fade_out.gd" type="Script" id=1]
 
 [node name="Tween" type="Tween"]
 

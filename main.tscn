@@ -4,7 +4,7 @@
 [ext_resource path="res://sprites/water.svg" type="Texture" id=2]
 [ext_resource path="res://sprites/scroll.svg" type="Texture" id=3]
 [ext_resource path="res://TradeWinds-Regular.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://hide.gd" type="Script" id=5]
+[ext_resource path="res://utils/in_out.gd" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -81,7 +81,7 @@ anchor_bottom = 0.0
 margin_left = -448.0
 margin_top = -72.0
 margin_right = 448.0
-margin_bottom = 125.0
+margin_bottom = 77.0
 rect_pivot_offset = Vector2( 0, 0 )
 mouse_filter = 2
 mouse_default_cursor_shape = 0
@@ -94,13 +94,14 @@ text = "Islands info:
 - Two
 - Three"
 align = 1
+valign = 1
 autowrap = true
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_colors", "custom_fonts" ]
 
-[node name="hide" type="Tween" parent="scroll" index="2"]
+[node name="in_out" type="Tween" parent="scroll" index="2"]
 
 repeat = false
 playback_process_mode = 1
@@ -118,7 +119,9 @@ wait_time = 4.0
 one_shot = true
 autostart = false
 
-[connection signal="tween_completed" from="scroll/hide" to="." method="_on_scroll_hide_tween_completed"]
+[connection signal="moved_out" from="scroll/in_out" to="." method="_on_in_out_moved_out"]
+
+[connection signal="tween_completed" from="scroll/in_out" to="scroll/in_out" method="_on_in_out_tween_completed"]
 
 [connection signal="timeout" from="next_level_timer" to="." method="_on_next_level_timer_timeout"]
 

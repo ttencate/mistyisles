@@ -11,6 +11,7 @@ onready var grid = get_node("grid")
 var mist
 var guesses
 var cursor
+var is_solved
 
 signal help_text
 signal solved
@@ -131,6 +132,8 @@ func toggle_guess(coords):
 	check_solved()
 
 func check_solved():
+	if is_solved:
+		return
 	var land_tile = guesses.tile_set.find_tile_by_name("guess_land")
 	var water_tile = guesses.tile_set.find_tile_by_name("guess_water")
 	for y in range(n.y):
@@ -139,13 +142,14 @@ func check_solved():
 			var actual = land.get_cell(x, y) != -1
 			if guess != actual:
 				return
+	is_solved = true
 	complete_level()
 
 func complete_level():
 	land.visible = true
-	mist.add_child(preload("res://fade_out.tscn").instance())
-	guesses.add_child(preload("res://fade_out.tscn").instance())
-	grid.add_child(preload("res://fade_out.tscn").instance())
+	mist.add_child(preload("res://utils/fade_out.tscn").instance())
+	guesses.add_child(preload("res://utils/fade_out.tscn").instance())
+	grid.add_child(preload("res://utils/fade_out.tscn").instance())
 	remove_child(cursor)
 	cursor.queue_free()
 	cursor = null
