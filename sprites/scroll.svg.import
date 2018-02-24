@@ -7,10 +7,10 @@ path="res://.import/scroll.svg-e40df50397eb36ba58459626f645336b.stex"
 [deps]
 
 source_file="res://sprites/scroll.svg"
-source_md5="8335b608aeb5875e87c78c8116452e9b"
+source_md5="73088b2ddbbeda1d882ce1a57fefc83d"
 
 dest_files=[ "res://.import/scroll.svg-e40df50397eb36ba58459626f645336b.stex" ]
-dest_md5="4c40f72f4c4b8d7f1b8ad7d1f4ce52ea"
+dest_md5="b8ef0489a0e092931786ddeff40a6726"
 
 [params]
 

@@ -22,6 +22,8 @@ func create_level(name):
 	level_node.scale.x = scale
 	level_node.scale.y = scale
 	level_node.position = -level_node.size * level_node.scale / 2
+	get_node("water").region_rect = Rect2(0, 0, 4096, 4096)
+	get_node("water").position = to_local(level_node.to_global(level_node.position))
 	
 	var island_sizes = level_node.get_island_sizes()
 	island_sizes.sort()

@@ -39,7 +39,7 @@
 [ext_resource path="res://sprites/land2_rt.svg" type="Texture" id=37]
 [ext_resource path="res://sprites/land2_lb.svg" type="Texture" id=38]
 
-[node name="Node" type="Node" index="0"]
+[node name="Node" type="Node"]
 
 [node name="land_t" type="Sprite" parent="." index="0"]
 

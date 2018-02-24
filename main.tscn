@@ -21,7 +21,7 @@ extra_spacing_bottom = -6
 font_data = ExtResource( 4 )
 _sections_unfolded = [ "Extra Spacing", "Font/fallback", "Settings" ]
 
-[node name="Node" type="Node"]
+[node name="Node" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -31,6 +31,7 @@ position = Vector2( 512, 512 )
 texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 1024, 1024 )
+_sections_unfolded = [ "Region", "Transform" ]
 
 [node name="level_area" type="CollisionShape2D" parent="." index="1"]
 
