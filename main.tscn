@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://main.gd" type="Script" id=1]
 [ext_resource path="res://sprites/water.svg" type="Texture" id=2]
 [ext_resource path="res://sprites/scroll.svg" type="Texture" id=3]
 [ext_resource path="res://TradeWinds-Regular.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://hide.gd" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -20,7 +21,7 @@ extra_spacing_bottom = -6
 font_data = ExtResource( 4 )
 _sections_unfolded = [ "Extra Spacing", "Font/fallback", "Settings" ]
 
-[node name="Node" type="Node"]
+[node name="Node" type="Node" index="0"]
 
 script = ExtResource( 1 )
 
@@ -42,16 +43,16 @@ _sections_unfolded = [ "Transform" ]
 position = Vector2( 512, 832 )
 texture = ExtResource( 3 )
 
-[node name="islands_count" type="Label" parent="." index="3"]
+[node name="islands_count" type="Label" parent="scroll" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 64.0
-margin_top = 760.0
-margin_right = 960.0
-margin_bottom = 957.0
+margin_left = -448.0
+margin_top = -72.0
+margin_right = 448.0
+margin_bottom = 125.0
 rect_pivot_offset = Vector2( 0, 0 )
 mouse_filter = 2
 mouse_default_cursor_shape = 0
@@ -69,5 +70,27 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_colors" ]
+
+[node name="hide" type="Tween" parent="scroll" index="1"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+script = ExtResource( 5 )
+_sections_unfolded = [ "playback" ]
+
+[node name="next_level_timer" type="Timer" parent="." index="3"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = false
+
+[connection signal="tween_completed" from="scroll/hide" to="." method="_on_scroll_hide_tween_completed"]
+
+[connection signal="timeout" from="next_level_timer" to="." method="_on_next_level_timer_timeout"]
 
 

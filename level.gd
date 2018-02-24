@@ -12,6 +12,8 @@ var mist
 var guesses
 var cursor
 
+signal solved
+
 class ClueType:
 	var land
 	var neighbours
@@ -122,9 +124,10 @@ func check_solved():
 
 func complete_level():
 	land.visible = true
-	mist.visible = false
-	guesses.visible = false
-	grid.visible = false
+	mist.add_child(preload("res://fade_out.tscn").instance())
+	guesses.add_child(preload("res://fade_out.tscn").instance())
+	grid.add_child(preload("res://fade_out.tscn").instance())
+	emit_signal("solved")
 
 func update_mist():
 	for y in range(-1, n.y + 1):
