@@ -2,7 +2,7 @@
 
 cd "$(dirname "$0")"
 
-for b in land mist; do
+for b in land land2 mist; do
   for s in '' l r t b lr tb lt lb rt rb lrt lrb ltb rtb lrtb; do
     case $s in
       *lr*) x=256;;

@@ -10,6 +10,9 @@ func create_level(name):
 	var level_area = get_node("level_area")
 	
 	var scene = load("res://level_%02d.tscn" % current_level)
+	if scene == null:
+		return # TODO win screen
+	
 	level_node = scene.instance()
 	level_area.add_child(level_node)
 	
@@ -31,7 +34,11 @@ func create_level(name):
 			text += "\n— One of %d tiles" % size
 	get_node("scroll/islands_count").text = text
 	
+	level_node.connect("help_text", self, "help_text")
 	level_node.connect("solved", self, "level_solved")
+
+func help_text(text):
+	get_node("scroll/help_text").text = text
 
 func level_solved():
 	get_node("scroll/hide").start()

@@ -25,7 +25,7 @@ collision_layer = 1
 collision_mask = 1
 occluder_light_mask = 1
 format = 1
-tile_data = PoolIntArray( 0, 7, 0, 65536, 12, 0, 65537, 0, 0, 65538, 6, 0 )
+tile_data = PoolIntArray( 0, 36, 0, 1, 0, 0, 2, 6, 0, 65536, 14, 0 )
 _sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_lock_": true
@@ -49,7 +49,7 @@ collision_layer = 1
 collision_mask = 1
 occluder_light_mask = 1
 format = 1
-tile_data = PoolIntArray( 1, 17, 0, 65538, 19, 0 )
+tile_data = PoolIntArray( 65536, 19, 0, 65537, 17, 0 )
 _sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_lock_": true

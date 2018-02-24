@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/scroll.svg-e40df50397eb36ba58459626f645336b.stex"
+path="res://.import/land2_rb.svg-dbc5378b7c0e982fd6f8bd9ca364bbb3.stex"
 
 [deps]
 
-source_file="res://sprites/scroll.svg"
-source_md5="8335b608aeb5875e87c78c8116452e9b"
+source_file="res://sprites/land2_rb.svg"
+source_md5="821bbf37850a42bb3054aec51d29afc8"
 
-dest_files=[ "res://.import/scroll.svg-e40df50397eb36ba58459626f645336b.stex" ]
-dest_md5="4c40f72f4c4b8d7f1b8ad7d1f4ce52ea"
+dest_files=[ "res://.import/land2_rb.svg-dbc5378b7c0e982fd6f8bd9ca364bbb3.stex" ]
+dest_md5="dde04cf263267f2db3181223d223719b"
 
 [params]
 

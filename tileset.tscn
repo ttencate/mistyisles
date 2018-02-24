@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://sprites/land_t.svg" type="Texture" id=1]
 [ext_resource path="res://sprites/land_rb.svg" type="Texture" id=2]
@@ -34,8 +34,12 @@
 [ext_resource path="res://sprites/grid.svg" type="Texture" id=32]
 [ext_resource path="res://sprites/guess_land.svg" type="Texture" id=33]
 [ext_resource path="res://sprites/guess_water.svg" type="Texture" id=34]
+[ext_resource path="res://sprites/land2_rb.svg" type="Texture" id=35]
+[ext_resource path="res://sprites/land2_lt.svg" type="Texture" id=36]
+[ext_resource path="res://sprites/land2_rt.svg" type="Texture" id=37]
+[ext_resource path="res://sprites/land2_lb.svg" type="Texture" id=38]
 
-[node name="Node" type="Node"]
+[node name="Node" type="Node" index="0"]
 
 [node name="land_t" type="Sprite" parent="." index="0"]
 
@@ -119,32 +123,32 @@ texture = ExtResource( 16 )
 
 [node name="castle" type="Sprite" parent="." index="16"]
 
-position = Vector2( 1152, 384 )
+position = Vector2( 1152, 1408 )
 texture = ExtResource( 17 )
 
 [node name="harbour" type="Sprite" parent="." index="17"]
 
-position = Vector2( 1152, 640 )
+position = Vector2( 1152, 1664 )
 texture = ExtResource( 18 )
 
 [node name="lighthouse" type="Sprite" parent="." index="18"]
 
-position = Vector2( 1152, 128 )
+position = Vector2( 1152, 1152 )
 texture = ExtResource( 19 )
 
 [node name="seagulls" type="Sprite" parent="." index="19"]
 
-position = Vector2( 1408, 640 )
+position = Vector2( 1408, 1664 )
 texture = ExtResource( 20 )
 
 [node name="whale" type="Sprite" parent="." index="20"]
 
-position = Vector2( 1408, 128 )
+position = Vector2( 1408, 1152 )
 texture = ExtResource( 21 )
 
 [node name="fish" type="Sprite" parent="." index="21"]
 
-position = Vector2( 1408, 384 )
+position = Vector2( 1408, 1408 )
 texture = ExtResource( 22 )
 
 [node name="mist_lrtb" type="Sprite" parent="." index="22"]
@@ -206,5 +210,25 @@ texture = ExtResource( 33 )
 
 position = Vector2( 896, 1664 )
 texture = ExtResource( 34 )
+
+[node name="land2_rb" type="Sprite" parent="." index="34"]
+
+position = Vector2( 1152, 128 )
+texture = ExtResource( 35 )
+
+[node name="land2_lt" type="Sprite" parent="." index="35"]
+
+position = Vector2( 1408, 384 )
+texture = ExtResource( 36 )
+
+[node name="land2_rt" type="Sprite" parent="." index="36"]
+
+position = Vector2( 1152, 384 )
+texture = ExtResource( 37 )
+
+[node name="land2_lb" type="Sprite" parent="." index="37"]
+
+position = Vector2( 1408, 128 )
+texture = ExtResource( 38 )
 
 

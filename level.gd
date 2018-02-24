@@ -12,22 +12,25 @@ var mist
 var guesses
 var cursor
 
+signal help_text
 signal solved
 
 class ClueType:
 	var land
 	var neighbours
-	func _init(land, neighbours):
+	var help_text
+	func _init(land, neighbours, help_text):
 		self.land = land
 		self.neighbours = neighbours
+		self.help_text = help_text
 
 var CLUES = {
-	lighthouse = ClueType.new(true, 1),
-	castle = ClueType.new(true, 2),
-	harbour = ClueType.new(true, 3),
-	whale = ClueType.new(false, 1),
-	fish = ClueType.new(false, 2),
-	seagulls = ClueType.new(false, 3),
+	lighthouse = ClueType.new(true, 1, "A lighthouse means ONE out of four neighbours is land"),
+	castle = ClueType.new(true, 2, "A castle means TWO out of four neighbours are land"),
+	harbour = ClueType.new(true, 3, "A harbour means THREE out of four neighbours are land"),
+	whale = ClueType.new(false, 1, "A whale means ONE out of four neighbours is land"),
+	fish = ClueType.new(false, 2, "Fish mean TWO out of four neighbours are land"),
+	seagulls = ClueType.new(false, 3, "Seagulls mean THREE out of four neighbours are land"),
 }
 
 func _ready():
@@ -50,6 +53,7 @@ func _ready():
 	mist.transform = clues.transform
 	
 	cursor = Sprite.new()
+	cursor.visible = false
 	cursor.texture = load("res://sprites/cursor.svg")
 	cursor.modulate = Color(0.7, 1, 0.7, 0.3)
 	
@@ -70,14 +74,27 @@ func _input(event):
 		if not grid.get_used_rect().has_point(coords):
 			coords = null
 		if event is InputEventMouseMotion:
-			if coords != null:
-				cursor.visible = true
-				cursor.position = grid.position + (coords + Vector2(0.5, 0.5)) * grid.cell_size
-			else:
-				cursor.visible = false
+			update_cursor(coords)
 		elif event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
 			if coords != null:
 				toggle_guess(coords)
+
+func update_cursor(coords):
+	var help_text = ""
+	if coords == null:
+		if cursor != null:
+			cursor.visible = false
+	else:
+		if cursor != null:
+			cursor.visible = true
+			cursor.position = grid.position + (coords + Vector2(0.5, 0.5)) * grid.cell_size
+			var clue_tile = clues.get_cell(coords.x, coords.y)
+			if clue_tile >= 0:
+				var clue_tile_name = clues.tile_set.tile_get_name(clue_tile)
+				if clue_tile_name in CLUES:
+					var clue = CLUES[clue_tile_name]
+					help_text = clue.help_text
+	emit_signal("help_text", help_text)
 
 func create_tile_map():
 	var tile_map = TileMap.new()
@@ -99,6 +116,8 @@ func init_guesses():
 	return guesses
 
 func toggle_guess(coords):
+	if clues.get_cell(coords.x, coords.y) >= 0:
+		return # Filled by init_guesses() already
 	var land_tile = guesses.tile_set.find_tile_by_name("guess_land")
 	var water_tile = guesses.tile_set.find_tile_by_name("guess_water")
 	var tile = guesses.get_cell(coords.x, coords.y)
@@ -127,6 +146,9 @@ func complete_level():
 	mist.add_child(preload("res://fade_out.tscn").instance())
 	guesses.add_child(preload("res://fade_out.tscn").instance())
 	grid.add_child(preload("res://fade_out.tscn").instance())
+	remove_child(cursor)
+	cursor.queue_free()
+	cursor = null
 	emit_signal("solved")
 
 func update_mist():

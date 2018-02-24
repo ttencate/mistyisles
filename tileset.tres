@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=37 format=2]
+[gd_resource type="TileSet" load_steps=41 format=2]
 
 [ext_resource path="res://sprites/land_lr.svg" type="Texture" id=1]
 [ext_resource path="res://sprites/land_lrb.svg" type="Texture" id=2]
@@ -30,12 +30,16 @@
 [ext_resource path="res://sprites/grid.svg" type="Texture" id=28]
 [ext_resource path="res://sprites/guess_land.svg" type="Texture" id=29]
 [ext_resource path="res://sprites/guess_water.svg" type="Texture" id=30]
-[ext_resource path="res://sprites/land_lt.svg" type="Texture" id=31]
-[ext_resource path="res://sprites/land_lb.svg" type="Texture" id=32]
-[ext_resource path="res://sprites/land_l.svg" type="Texture" id=33]
-[ext_resource path="res://sprites/land_b.svg" type="Texture" id=34]
-[ext_resource path="res://sprites/land_.svg" type="Texture" id=35]
-[ext_resource path="res://sprites/land_ltb.svg" type="Texture" id=36]
+[ext_resource path="res://sprites/land2_rb.svg" type="Texture" id=31]
+[ext_resource path="res://sprites/land2_lt.svg" type="Texture" id=32]
+[ext_resource path="res://sprites/land2_rt.svg" type="Texture" id=33]
+[ext_resource path="res://sprites/land2_lb.svg" type="Texture" id=34]
+[ext_resource path="res://sprites/land_lt.svg" type="Texture" id=35]
+[ext_resource path="res://sprites/land_lb.svg" type="Texture" id=36]
+[ext_resource path="res://sprites/land_l.svg" type="Texture" id=37]
+[ext_resource path="res://sprites/land_b.svg" type="Texture" id=38]
+[ext_resource path="res://sprites/land_.svg" type="Texture" id=39]
+[ext_resource path="res://sprites/land_ltb.svg" type="Texture" id=40]
 
 [resource]
 
@@ -76,7 +80,7 @@
 3/navigation_offset = Vector2( 128, 128 )
 3/shapes = [  ]
 4/name = "land_lt"
-4/texture = ExtResource( 31 )
+4/texture = ExtResource( 35 )
 4/tex_offset = Vector2( 0, 0 )
 4/modulate = Color( 1, 1, 1, 1 )
 4/region = Rect2( 0, 0, 256, 256 )
@@ -85,7 +89,7 @@
 4/navigation_offset = Vector2( 128, 128 )
 4/shapes = [  ]
 5/name = "land_lb"
-5/texture = ExtResource( 32 )
+5/texture = ExtResource( 36 )
 5/tex_offset = Vector2( 0, 0 )
 5/modulate = Color( 1, 1, 1, 1 )
 5/region = Rect2( 0, 0, 256, 256 )
@@ -94,7 +98,7 @@
 5/navigation_offset = Vector2( 128, 128 )
 5/shapes = [  ]
 6/name = "land_l"
-6/texture = ExtResource( 33 )
+6/texture = ExtResource( 37 )
 6/tex_offset = Vector2( 0, 0 )
 6/modulate = Color( 1, 1, 1, 1 )
 6/region = Rect2( 0, 0, 256, 256 )
@@ -103,7 +107,7 @@
 6/navigation_offset = Vector2( 128, 128 )
 6/shapes = [  ]
 7/name = "land_b"
-7/texture = ExtResource( 34 )
+7/texture = ExtResource( 38 )
 7/tex_offset = Vector2( 0, 0 )
 7/modulate = Color( 1, 1, 1, 1 )
 7/region = Rect2( 0, 0, 256, 256 )
@@ -112,7 +116,7 @@
 7/navigation_offset = Vector2( 128, 128 )
 7/shapes = [  ]
 8/name = "land_"
-8/texture = ExtResource( 35 )
+8/texture = ExtResource( 39 )
 8/tex_offset = Vector2( 0, 0 )
 8/modulate = Color( 1, 1, 1, 1 )
 8/region = Rect2( 0, 0, 256, 256 )
@@ -121,7 +125,7 @@
 8/navigation_offset = Vector2( 128, 128 )
 8/shapes = [  ]
 9/name = "land_ltb"
-9/texture = ExtResource( 36 )
+9/texture = ExtResource( 40 )
 9/tex_offset = Vector2( 0, 0 )
 9/modulate = Color( 1, 1, 1, 1 )
 9/region = Rect2( 0, 0, 256, 256 )
@@ -363,4 +367,40 @@
 35/occluder_offset = Vector2( 128, 128 )
 35/navigation_offset = Vector2( 128, 128 )
 35/shapes = [  ]
+36/name = "land2_rb"
+36/texture = ExtResource( 31 )
+36/tex_offset = Vector2( 0, 0 )
+36/modulate = Color( 1, 1, 1, 1 )
+36/region = Rect2( 0, 0, 256, 256 )
+36/is_autotile = false
+36/occluder_offset = Vector2( 128, 128 )
+36/navigation_offset = Vector2( 128, 128 )
+36/shapes = [  ]
+37/name = "land2_lt"
+37/texture = ExtResource( 32 )
+37/tex_offset = Vector2( 0, 0 )
+37/modulate = Color( 1, 1, 1, 1 )
+37/region = Rect2( 0, 0, 256, 256 )
+37/is_autotile = false
+37/occluder_offset = Vector2( 128, 128 )
+37/navigation_offset = Vector2( 128, 128 )
+37/shapes = [  ]
+38/name = "land2_rt"
+38/texture = ExtResource( 33 )
+38/tex_offset = Vector2( 0, 0 )
+38/modulate = Color( 1, 1, 1, 1 )
+38/region = Rect2( 0, 0, 256, 256 )
+38/is_autotile = false
+38/occluder_offset = Vector2( 128, 128 )
+38/navigation_offset = Vector2( 128, 128 )
+38/shapes = [  ]
+39/name = "land2_lb"
+39/texture = ExtResource( 34 )
+39/tex_offset = Vector2( 0, 0 )
+39/modulate = Color( 1, 1, 1, 1 )
+39/region = Rect2( 0, 0, 256, 256 )
+39/is_autotile = false
+39/occluder_offset = Vector2( 128, 128 )
+39/navigation_offset = Vector2( 128, 128 )
+39/shapes = [  ]
 
