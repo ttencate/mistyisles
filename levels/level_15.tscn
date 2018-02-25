@@ -101,7 +101,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-text = "4a148c “Cap'n! I see land beyond this mistbank!”
+text = "4a148c “Cap'n! I see land beyond this fogbank!”
 4e342e “Navigator, get us round these isles. Time to head home.”"
 percent_visible = 1.0
 lines_skipped = 0
