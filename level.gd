@@ -17,10 +17,27 @@ class ClueType:
 	var land
 	var neighbours
 	var help_text
+	
 	func _init(land, neighbours, help_text):
 		self.land = land
 		self.neighbours = neighbours
 		self.help_text = help_text
+		
+	static func is_land(tile, tile_set):
+		if tile < 0:
+			return false
+		return "land" in tile_set.tile_get_name(tile)
+	
+	func matches(coords, guesses):
+		var tile_set = guesses.tile_set
+		if is_land(guesses.get_cell(coords.x, coords.y), tile_set) != self.land:
+			return false
+		var land_count = 0
+		if is_land(guesses.get_cell(coords.x - 1, coords.y), tile_set): land_count += 1
+		if is_land(guesses.get_cell(coords.x + 1, coords.y), tile_set): land_count += 1
+		if is_land(guesses.get_cell(coords.x, coords.y - 1), tile_set): land_count += 1
+		if is_land(guesses.get_cell(coords.x, coords.y + 1), tile_set): land_count += 1
+		return land_count == self.neighbours
 
 var CLUES = {
 	lighthouse = ClueType.new(true, 1, "A lighthouse means ONE out of four neighbours is land"),
@@ -61,13 +78,12 @@ func create(level_node):
 	level_root.add_child(guesses)
 	init_guesses()
 	
+	level_root.add_child(clues)
+	
 	cursor = Sprite.new()
 	cursor.visible = false
 	cursor.texture = load("res://sprites/cursor.svg")
-	cursor.modulate = Color(0.7, 1, 0.7, 0.3)
 	level_root.add_child(cursor)
-	
-	level_root.add_child(clues)
 	
 	grid.modulate = Color(1, 1, 1, 0.3)
 	level_root.add_child(grid)
@@ -94,9 +110,10 @@ func _input(event):
 			coords = null
 		if event is InputEventMouseMotion:
 			update_cursor(coords)
-		elif event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
-			if coords != null:
-				toggle_guess(coords)
+		elif event is InputEventMouseButton and event.pressed and coords != null:
+			match event.button_index:
+				BUTTON_LEFT: toggle_guess(coords)
+				BUTTON_RIGHT: erase_guess(coords)
 
 func update_cursor(coords):
 	var help_text = ""
@@ -107,12 +124,18 @@ func update_cursor(coords):
 		if cursor != null:
 			cursor.visible = true
 			cursor.position = grid.position + (coords + Vector2(0.5, 0.5)) * grid.cell_size
+			var cursor_texture = preload("res://sprites/cursor.svg")
 			var clue_tile = clues.get_cell(coords.x, coords.y)
 			if clue_tile >= 0:
 				var clue_tile_name = clues.tile_set.tile_get_name(clue_tile)
 				if clue_tile_name in CLUES:
 					var clue = CLUES[clue_tile_name]
 					help_text = clue.help_text
+					if clue.matches(coords, guesses):
+						cursor_texture = preload("res://sprites/correct.svg")
+					else:
+						cursor_texture = preload("res://sprites/incorrect.svg")
+			cursor.texture = cursor_texture
 	$scroll/help_text.text = help_text
 
 func create_tile_map():
@@ -150,7 +173,12 @@ func toggle_guess(coords):
 		water_tile: next_tile = -1
 		_: next_tile = land_tile
 	guesses.set_cell(coords.x, coords.y, next_tile)
-	
+	check_solved()
+
+func erase_guess(coords):
+	if clues.get_cell(coords.x, coords.y) >= 0:
+		return # Filled by init_guesses() already
+	guesses.set_cell(coords.x, coords.y, -1)
 	check_solved()
 
 func check_solved():

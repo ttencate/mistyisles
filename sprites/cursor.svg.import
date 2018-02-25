@@ -7,10 +7,10 @@ path="res://.import/cursor.svg-767579528ae61e19f7bba1a320cadc8b.stex"
 [deps]
 
 source_file="res://sprites/cursor.svg"
-source_md5="c8f72485b4752c5504ed7d076f15694e"
+source_md5="b3e9a008af7712fdad595add0a9c0549"
 
 dest_files=[ "res://.import/cursor.svg-767579528ae61e19f7bba1a320cadc8b.stex" ]
-dest_md5="712c24f174bcd423d5c92f19e78efad0"
+dest_md5="b96b8e925f612f367ff3daadc119f463"
 
 [params]
 

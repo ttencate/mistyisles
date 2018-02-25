@@ -7,10 +7,10 @@ path="res://.import/guess_water.svg-56e39f0e741e3912adbf18671ee2987d.stex"
 [deps]
 
 source_file="res://sprites/guess_water.svg"
-source_md5="6e8329031f706f6f113d57df395cd48f"
+source_md5="5c0801035ae768c3b1759a7b20e1c22c"
 
 dest_files=[ "res://.import/guess_water.svg-56e39f0e741e3912adbf18671ee2987d.stex" ]
-dest_md5="ab6e4a31a3fa6b4780582123fb12115a"
+dest_md5="bb48d8d19e6ebd74127afa1b0c1684bf"
 
 [params]
 
