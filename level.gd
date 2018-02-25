@@ -1,13 +1,10 @@
 extends Node
 
-var TILE_SIZE = 256
-
 var n
-var size
 
-onready var land = get_node("land")
-onready var clues = get_node("clues")
-onready var grid = get_node("grid")
+var land
+var clues
+var grid
 var mist
 var guesses
 var cursor
@@ -34,40 +31,61 @@ var CLUES = {
 	seagulls = ClueType.new(false, 3, "Seagulls mean THREE out of four neighbours are land"),
 }
 
-func _ready():
-	land.visible = false
+func create(level_node):
+	land = level_node.get_node("land")
+	clues = level_node.get_node("clues")
+	grid = level_node.get_node("grid")
+	level_node.remove_child(land)
+	level_node.remove_child(clues)
+	level_node.remove_child(grid)
+	level_node.free()
+	
 	n = grid.get_used_rect().size
-	size = (n + Vector2(1, 1)) * grid.cell_size
+	var margin = Vector2(0.5, 0.5) * grid.cell_size
+	var size = n * grid.cell_size + 2 * margin
+	var level_root = $level_area/level_root
+	var scale = min(
+		$level_area.shape.extents.x * 2 / size.x,
+		$level_area.shape.extents.y * 2 / size.y)
+	level_root.scale = Vector2(scale, scale)
+	level_root.position = -n * grid.cell_size * scale / 2
 	
-	var offset = grid.cell_size / 2
-	land.position = offset
-	clues.position = offset
-	grid.position = offset
-	grid.modulate = Color(1, 1, 1, 0.3)
-	
-	guesses = create_tile_map()
-	init_guesses()
-	guesses.transform = clues.transform
+	land.visible = false
+	level_root.add_child(land)
 	
 	mist = create_tile_map()
+	level_root.add_child(mist)
 	update_mist()
-	mist.transform = clues.transform
+	
+	guesses = create_tile_map()
+	level_root.add_child(guesses)
+	init_guesses()
 	
 	cursor = Sprite.new()
 	cursor.visible = false
 	cursor.texture = load("res://sprites/cursor.svg")
 	cursor.modulate = Color(0.7, 1, 0.7, 0.3)
+	level_root.add_child(cursor)
 	
-	remove_child(land)
-	remove_child(clues)
-	remove_child(grid)
+	level_root.add_child(clues)
 	
-	add_child(land)
-	add_child(mist)
-	add_child(guesses)
-	add_child(cursor)
-	add_child(clues)
-	add_child(grid)
+	grid.modulate = Color(1, 1, 1, 0.3)
+	level_root.add_child(grid)
+	
+	var island_sizes = get_island_sizes()
+	island_sizes.sort()
+	var text
+	if len(island_sizes) == 1:
+		text = "There is one island, of %d tiles" % island_sizes[0]
+	else:
+		# TODO words instead of number
+		text = "There are %d islands:" % len(island_sizes)
+		for size in island_sizes:
+			text += "\n— One of %d %s" % [size, 'tiles' if size > 1 else 'tile']
+	get_node("scroll/islands_count").text = text
+
+func _ready():
+	$scroll/in_out.move_in()
 
 func _input(event):
 	if event is InputEventMouse:
@@ -95,7 +113,7 @@ func update_cursor(coords):
 				if clue_tile_name in CLUES:
 					var clue = CLUES[clue_tile_name]
 					help_text = clue.help_text
-	emit_signal("help_text", help_text)
+	$scroll/help_text.text = help_text
 
 func create_tile_map():
 	var tile_map = TileMap.new()
@@ -107,13 +125,17 @@ func init_guesses():
 	var tile_set = guesses.tile_set
 	for y in range(n.y):
 		for x in range(n.x):
-			var tile_name = tile_set.tile_get_name(clues.get_cell(x, y))
-			if CLUES.has(tile_name):
-				var clue = CLUES[tile_name]
-				if clue.land:
-					guesses.set_cell(x, y, tile_set.find_tile_by_name("guess_land"))
-				else:
-					guesses.set_cell(x, y, tile_set.find_tile_by_name("guess_water"))
+			var tile = clues.get_cell(x, y)
+			if tile < 0:
+				continue
+			var tile_name = tile_set.tile_get_name(tile)
+			if not CLUES.has(tile_name):
+				continue
+			var clue = CLUES[tile_name]
+			if clue.land:
+				guesses.set_cell(x, y, tile_set.find_tile_by_name("guess_land"))
+			else:
+				guesses.set_cell(x, y, tile_set.find_tile_by_name("guess_water"))
 	return guesses
 
 func toggle_guess(coords):
@@ -147,12 +169,22 @@ func check_solved():
 
 func complete_level():
 	land.visible = true
+	
 	mist.add_child(preload("res://utils/fade_out.tscn").instance())
+	
 	guesses.add_child(preload("res://utils/fade_out.tscn").instance())
+	
 	grid.add_child(preload("res://utils/fade_out.tscn").instance())
-	remove_child(cursor)
+	
+	cursor.get_parent().remove_child(cursor)
 	cursor.queue_free()
 	cursor = null
+	
+	$scroll/in_out.move_out()
+	
+	$solved_timer.start()
+
+func _on_solved_timer_timeout():
 	emit_signal("solved")
 
 func update_mist():
