@@ -124,6 +124,7 @@ func count_word(count):
 	return ['none', 'one', 'two', 'three', 'four', 'five'][count]
 
 func _ready():
+	$scroll/hint_bg.visible = false
 	$scroll/in_out.move_in()
 
 func _input(event):
@@ -159,7 +160,8 @@ func update_cursor(coords):
 					else:
 						cursor_texture = preload("res://sprites/incorrect.svg")
 			cursor.texture = cursor_texture
-	$scroll/help_text.text = help_text
+	$scroll/hint_bg/help_text.text = help_text
+	$scroll/hint_bg.visible = help_text != ""
 
 func create_tile_map():
 	var tile_map = TileMap.new()
@@ -240,10 +242,10 @@ func _on_solved_timer_timeout():
 
 func update_mist():
 	for y in range(-1, n.y + 1):
-		for x in range(-1, n.x + 1):
-			var mist_name = "mist_"
-			if x >= 0: mist_name += "l"
-			if x < n.x: mist_name += "r"
+		for x in range(-5, n.x + 5):
+			var mist_name = "mist_lr"
+			# if x >= 0: mist_name += "l"
+			# if x < n.x: mist_name += "r"
 			if y >= 0: mist_name += "t"
 			if y < n.y: mist_name += "b"
 			mist.set_cell(x, y, mist.tile_set.find_tile_by_name(mist_name))

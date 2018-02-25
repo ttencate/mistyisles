@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://level.gd" type="Script" id=1]
 [ext_resource path="res://sprites/scroll.svg" type="Texture" id=2]
 [ext_resource path="res://TradeWinds-Regular.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://utils/in_out.gd" type="Script" id=4]
+[ext_resource path="res://sprites/hint_bg.svg" type="Texture" id=5]
 
 [sub_resource type="RectangleShape2D" id=3]
 
@@ -39,35 +40,7 @@ _sections_unfolded = [ "Transform" ]
 position = Vector2( 512, 896 )
 texture = ExtResource( 2 )
 
-[node name="help_text" type="Label" parent="scroll" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = -448.0
-margin_top = -192.0
-margin_right = 448.0
-margin_bottom = -128.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-custom_fonts/font = SubResource( 2 )
-custom_colors/font_color = Color( 0.984314, 0.752941, 0.176471, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 0.501961 )
-custom_constants/shadow_offset_x = 2
-custom_constants/shadow_offset_y = 2
-align = 1
-valign = 1
-autowrap = true
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "custom_colors" ]
-
-[node name="islands_count" type="Label" parent="scroll" index="1"]
+[node name="islands_count" type="Label" parent="scroll" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -96,7 +69,7 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_colors", "custom_fonts" ]
 
-[node name="in_out" type="Tween" parent="scroll" index="2"]
+[node name="in_out" type="Tween" parent="scroll" index="1"]
 
 repeat = false
 playback_process_mode = 1
@@ -106,6 +79,41 @@ playback/repeat = false
 playback/speed = 1.0
 script = ExtResource( 4 )
 _sections_unfolded = [ "playback" ]
+offset = Vector2( 0, 320 )
+
+[node name="hint_bg" type="Sprite" parent="scroll" index="2"]
+
+position = Vector2( 0, -160 )
+texture = ExtResource( 5 )
+
+[node name="help_text" type="Label" parent="scroll/hint_bg" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -512.0
+margin_top = -32.0
+margin_right = 512.0
+margin_bottom = 32.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 1, 0.960784, 0.615686, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0.501961 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+text = "Here be some helpful advice"
+align = 1
+valign = 1
+autowrap = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_colors" ]
 
 [node name="solved_timer" type="Timer" parent="." index="2"]
 

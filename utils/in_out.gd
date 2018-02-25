@@ -1,8 +1,10 @@
 extends Tween
 
+export (Vector2) var offset
+
 onready var target = get_node("..")
 onready var visible_y = target.position.y
-onready var hidden_y = get_viewport().size.y + target.texture.get_height() / 2
+onready var hidden_y = visible_y + offset.y
 
 signal moved_in
 signal moved_out
