@@ -48,7 +48,9 @@ var CLUES = {
 	seagulls = ClueType.new(false, 3, "Seagulls mean THREE out of four neighbours are land"),
 }
 
-func create(level_node):
+func create(level_number, level_node):
+	$level_number_text.text = "Level %d" % level_number
+	
 	land = level_node.get_node("land")
 	clues = level_node.get_node("clues")
 	grid = level_node.get_node("grid")
@@ -224,6 +226,8 @@ func check_solved():
 
 func complete_level():
 	land.visible = true
+	
+	$level_number_text.add_child(preload("res://utils/fade_out.tscn").instance())
 	
 	mist.add_child(preload("res://utils/fade_out.tscn").instance())
 	

@@ -1,53 +1,84 @@
 extends Node
 
-var current_level = 1
+var current_level = 0
 
 onready var water = $water
 onready var level_root = $level_root
 onready var scroll_tween = $level_root/scroll_tween
+onready var ship = $level_root/ship
 onready var sail_distance = get_viewport().size.y
-var old_level_node
-var level_node
 
-func _ready():
-	create_level(current_level)
+onready var screen_node = $level_root/start_screen
+var old_screen_node
+
+var sailing_speed = 256
 
 func create_level(level_number):
 	var level_scene = load("res://levels/level_%02d.tscn" % level_number)
 	if not level_scene:
 		print("You win!") # TODO
-		return
-	level_node = preload("res://level.tscn").instance()
-	level_node.create(level_scene.instance())
-	level_node.position.y = -level_root.position.y - sail_distance
-	level_root.add_child(level_node)
+		return null
+	var level_node = preload("res://level.tscn").instance()
+	level_node.create(level_number, level_scene.instance())
+	return level_node
+
+func switch_screen(new_screen_node):
+	old_screen_node = screen_node
+	screen_node = new_screen_node
 	
-	scroll_tween.interpolate_method(self, "set_level_y",
-		level_root.position.y, level_root.position.y + sail_distance,
-		2, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
-	scroll_tween.start()
+	screen_node.position.y = -level_root.position.y - sail_distance
+	level_root.add_child(screen_node)
 	
-	level_node.connect("solved", self, "level_solved")
+	var path_out = old_screen_node.get_node("path_out")
+	ship.get_parent().remove_child(ship)
+	path_out.add_child(ship)
+	ship.offset = 0
+	ship.get_node("tween_out").interpolate_property(ship, "offset",
+		0, path_out.curve.get_baked_length(),
+		path_out.curve.get_baked_length() / sailing_speed, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	ship.get_node("tween_out").start()
+	
+	screen_node.connect("solved", self, "level_solved")
+
+func _process(delta):
+	if ship.global_position.y < $scroll_edge.global_position.y and not scroll_tween.is_active():
+		scroll_tween.interpolate_method(self, "set_level_y",
+			level_root.position.y, level_root.position.y + sail_distance,
+			1.3, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
+		scroll_tween.start()
 
 func set_level_y(value):
 	level_root.position.y = value
-	water.region_rect = Rect2(Vector2(0, -value), get_viewport().size)
+	water.region_rect = Rect2(0, -value, 1024, 1024)
 
-func _on_scroll_tween_tween_completed(object, key):
-	if old_level_node:
-		level_root.remove_child(old_level_node)
-		old_level_node.queue_free()
-		old_level_node = null
-	if level_node and not level_node.is_solved:
-		level_node.show_instructions()
-
-func switch_level(level_number):
-	current_level = level_number
-	old_level_node = level_node
-	create_level(current_level)
+func set_ship_offset(value):
+	ship.offset = value
 
 func level_solved():
 	switch_level(current_level + 1)
+
+func _on_ship_tween_out_tween_completed(object, key):
+	var path_in = screen_node.get_node("path_in")
+	ship.get_parent().remove_child(ship)
+	path_in.add_child(ship)
+	ship.offset = 0
+	ship.get_node("tween_in").interpolate_property(ship, "offset",
+		0, path_in.curve.get_baked_length(),
+		path_in.curve.get_baked_length() / sailing_speed, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	ship.get_node("tween_in").start()
+
+func _on_ship_tween_in_tween_completed(object, key):
+	if old_screen_node:
+		level_root.remove_child(old_screen_node)
+		old_screen_node.queue_free()
+		old_screen_node = null
+	if screen_node and not screen_node.is_solved:
+		screen_node.show_instructions()
+	scroll_tween.remove_all()
+
+func switch_level(level_number):
+	current_level = level_number
+	switch_screen(create_level(current_level))
 
 func _input(event):
 	if OS.has_feature("debug"):

@@ -7,10 +7,10 @@ path="res://.import/water.svg-bc0e4c9b7bfd25f68af7c30ff47038bc.stex"
 [deps]
 
 source_file="res://sprites/water.svg"
-source_md5="e9b3cba0216ae075528b379f869a338a"
+source_md5="28730c9aa6ec26e1a826ecf7d34c00cd"
 
 dest_files=[ "res://.import/water.svg-bc0e4c9b7bfd25f68af7c30ff47038bc.stex" ]
-dest_md5="2d86fe6a406ec0d36b5d64c2266c97e8"
+dest_md5="f8182c693b65e86a5b0ef7352ffdc420"
 
 [params]
 

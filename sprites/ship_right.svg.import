@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/guess_water.svg-56e39f0e741e3912adbf18671ee2987d.stex"
+path="res://.import/ship_right.svg-fd3da5e018b6e3ff7209caca2b862828.stex"
 
 [deps]
 
-source_file="res://sprites/guess_water.svg"
-source_md5="9c1d2a1adcfde11a6f29de38edb9986c"
+source_file="res://sprites/ship_right.svg"
+source_md5="cca2928b033df9bb37d8bfe7402d8888"
 
-dest_files=[ "res://.import/guess_water.svg-56e39f0e741e3912adbf18671ee2987d.stex" ]
-dest_md5="927fb7d9588a92717ca8c604451647cf"
+dest_files=[ "res://.import/ship_right.svg-fd3da5e018b6e3ff7209caca2b862828.stex" ]
+dest_md5="11f7fa52d27d6e924fcab524dbbe8a12"
 
 [params]
 

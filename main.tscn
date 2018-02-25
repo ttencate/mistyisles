@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://main.gd" type="Script" id=1]
 [ext_resource path="res://sprites/water.svg" type="Texture" id=2]
+[ext_resource path="res://sprites/ship_up.svg" type="Texture" id=3]
+[ext_resource path="res://start_screen.tscn" type="PackedScene" id=4]
 
 [node name="main" type="Node2D" index="0"]
 
@@ -28,6 +30,54 @@ playback/active = false
 playback/repeat = false
 playback/speed = 1.0
 
-[connection signal="tween_completed" from="level_root/scroll_tween" to="." method="_on_scroll_tween_tween_completed"]
+[node name="ship" type="PathFollow2D" parent="level_root" index="1"]
+
+position = Vector2( 512, 768 )
+scale = Vector2( 1, 1.33333 )
+offset = 0.0
+h_offset = 0.0
+v_offset = 0.0
+rotate = false
+cubic_interp = true
+loop = false
+lookahead = 4.0
+_sections_unfolded = [ "Transform" ]
+
+[node name="ship_sprite" type="Sprite" parent="level_root/ship" index="0"]
+
+scale = Vector2( 1, 1 )
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="tween_in" type="Tween" parent="level_root/ship" index="1"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+[node name="tween_out" type="Tween" parent="level_root/ship" index="2"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+[node name="start_screen" parent="level_root" index="2" instance=ExtResource( 4 )]
+
+[node name="scroll_edge" type="Node2D" parent="." index="2"]
+
+position = Vector2( 512, 192 )
+scale = Vector2( 18, 1 )
+
+[connection signal="tween_completed" from="level_root/ship/tween_in" to="." method="_on_ship_tween_in_tween_completed"]
+
+[connection signal="tween_completed" from="level_root/ship/tween_out" to="." method="_on_ship_tween_out_tween_completed"]
+
+[connection signal="solved" from="level_root/start_screen" to="." method="level_solved"]
 
 
