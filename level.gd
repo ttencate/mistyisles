@@ -89,16 +89,39 @@ func create(level_node):
 	level_root.add_child(grid)
 	
 	var island_sizes = get_island_sizes()
-	island_sizes.sort()
+	var size_counts = {}
+	for size in island_sizes:
+		if not size_counts.has(size):
+			size_counts[size] = 0
+		size_counts[size] += 1
+	var unique_sizes = size_counts.keys()
+	unique_sizes.sort()
 	var text
-	if len(island_sizes) == 1:
-		text = "There is one island, of %d tiles" % island_sizes[0]
+	if len(unique_sizes) == 1:
+		text = (plural(
+				len(island_sizes),
+				'There is %s island of %d %s',
+				'There are %s islands of %d %s each') %
+			[
+				count_word(len(island_sizes)),
+				unique_sizes[0],
+				plural(unique_sizes[0], 'tile', 'tiles'),
+			])
 	else:
-		# TODO words instead of number
-		text = "There are %d islands:" % len(island_sizes)
-		for size in island_sizes:
-			text += "\n— One of %d %s" % [size, 'tiles' if size > 1 else 'tile']
+		text = plural(len(island_sizes), 'There is %s island:', 'There are %s islands:') % count_word(len(island_sizes))
+		for size in unique_sizes:
+			var count = size_counts[size]
+			text += "\n— %s of %d %s" % [count_word(count), size, plural(size, 'tile', 'tiles')]
 	get_node("scroll/islands_count").text = text
+
+func plural(count, singular, plural):
+	if count == 1:
+		return singular
+	else:
+		return plural
+
+func count_word(count):
+	return ['none', 'one', 'two', 'three', 'four', 'five'][count]
 
 func _ready():
 	$scroll/in_out.move_in()
