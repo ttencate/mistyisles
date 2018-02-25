@@ -22,7 +22,7 @@ collision_layer = 1
 collision_mask = 1
 occluder_light_mask = 1
 format = 1
-tile_data = PoolIntArray( 0, 10, 0, 1, 39, 0, 3, 7, 0, 65537, 15, 0, 65539, 15, 0, 131073, 14, 0, 131075, 14, 0 )
+tile_data = PoolIntArray( 2, 10, 0, 3, 6, 0, 65536, 36, 0, 65537, 6, 0, 131072, 15, 0, 131074, 11, 0, 131075, 5, 0, 196608, 14, 0, 196610, 12, 0, 196611, 4, 0 )
 _sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_lock_": true
@@ -46,7 +46,7 @@ collision_layer = 1
 collision_mask = 1
 occluder_light_mask = 1
 format = 1
-tile_data = PoolIntArray( 0, 19, 0, 2, 17, 0, 65537, 16, 0, 131072, 21, 0, 131075, 19, 0 )
+tile_data = PoolIntArray( 0, 21, 0, 65536, 16, 0, 196609, 17, 0, 196611, 16, 0 )
 _sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_lock_": true
@@ -70,7 +70,7 @@ collision_layer = 1
 collision_mask = 1
 occluder_light_mask = 1
 format = 1
-tile_data = PoolIntArray( 0, 33, 0, 1, 33, 0, 2, 33, 0, 3, 33, 0, 65536, 33, 0, 65537, 33, 0, 65538, 33, 0, 65539, 33, 0, 131072, 33, 0, 131073, 33, 0, 131074, 33, 0, 131075, 33, 0 )
+tile_data = PoolIntArray( 0, 33, 0, 1, 33, 0, 2, 33, 0, 3, 33, 0, 65536, 33, 0, 65537, 33, 0, 65538, 33, 0, 65539, 33, 0, 131072, 33, 0, 131073, 33, 0, 131074, 33, 0, 131075, 33, 0, 196608, 33, 0, 196609, 33, 0, 196610, 33, 0, 196611, 33, 0 )
 __meta__ = {
 "_edit_lock_": true
 }
