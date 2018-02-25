@@ -19,7 +19,7 @@ _sections_unfolded = [ "Extra Spacing", "Font/fallback", "Settings" ]
 [sub_resource type="RectangleShape2D" id=3]
 
 custom_solver_bias = 0.0
-extents = Vector2( 448, 319.653 )
+extents = Vector2( 448, 288 )
 
 [sub_resource type="Curve2D" id=4]
 
@@ -67,7 +67,6 @@ max_lines_visible = -1
 [node name="level_area" type="CollisionShape2D" parent="." index="1"]
 
 position = Vector2( 512, 320 )
-scale = Vector2( 1, 0.896285 )
 shape = SubResource( 3 )
 _sections_unfolded = [ "Transform" ]
 
@@ -86,9 +85,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = -448.0
+margin_left = -384.0
 margin_top = -72.0
-margin_right = 448.0
+margin_right = 384.0
 margin_bottom = 77.0
 rect_pivot_offset = Vector2( 0, 0 )
 mouse_filter = 2
@@ -97,10 +96,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.243137, 0.152941, 0.137255, 1 )
-text = "Islands info:
-- One
-- Two
-- Three"
+text = "Islands info"
 align = 1
 valign = 1
 autowrap = true
@@ -157,18 +153,46 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_colors" ]
 
-[node name="solved_timer" type="Timer" parent="." index="3"]
+[node name="story" type="Label" parent="." index="3"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 128.0
+margin_top = 800.0
+margin_right = 896.0
+margin_bottom = 949.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.243137, 0.152941, 0.137255, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0.501961 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 2
+text = "Story"
+align = 1
+autowrap = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_colors", "custom_constants", "custom_fonts" ]
+
+[node name="solved_timer" type="Timer" parent="." index="4"]
 
 process_mode = 1
 wait_time = 2.0
 one_shot = true
 autostart = false
 
-[node name="path_in" type="Path2D" parent="." index="4"]
+[node name="path_in" type="Path2D" parent="." index="5"]
 
 curve = SubResource( 4 )
 
-[node name="path_out" type="Path2D" parent="." index="5"]
+[node name="path_out" type="Path2D" parent="." index="6"]
 
 curve = SubResource( 5 )
 

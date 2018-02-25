@@ -6,7 +6,7 @@
 
 bake_interval = 5.0
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 384, 512, 0, 0, 0, 0, 832, 192, 0, 0, 0, 0, 832, 64, 0, 0, 0, 0, 768, 0 )
+"points": PoolVector2Array( 0, 0, 0, 0, 384, 512, 0, 0, 0, 0, 796.249, 221.762, 0, 0, 0, 0, 796.249, 76.2014, 0, 0, 0, 0, 749.997, -1.33997 )
 }
 
 [node name="Node" type="Node2D"]
@@ -85,5 +85,29 @@ __meta__ = {
 [node name="path" type="Path2D" parent="." index="3"]
 
 curve = SubResource( 1 )
+
+[node name="story" type="Label" parent="." index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 64.0
+margin_top = 576.0
+margin_right = 631.0
+margin_bottom = 641.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "4e342e “Avast! That fogbank is hiding the islands from us! Lookout, can you see anything?”
+4a148c “Aye, cap'n. No land, but I see a lighthouse and some fish.”
+4e342e “Navigator, what do your charts say?”
+33691e “There's a lone isle somewhere over there. Should be able to figure out where.”"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_colors" ]
 
 

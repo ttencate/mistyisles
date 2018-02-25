@@ -8,6 +8,7 @@ var grid
 var mist
 var guesses
 var cursor
+var story_lines = []
 var is_solved
 
 signal help_text
@@ -55,6 +56,8 @@ func create(level_number, level_node):
 	clues = level_node.get_node("clues")
 	grid = level_node.get_node("grid")
 	var path = level_node.get_node("path")
+	if level_node.has_node("story"):
+		story_lines = level_node.get_node("story").text.split("\n")
 	level_node.remove_child(land)
 	level_node.remove_child(clues)
 	level_node.remove_child(grid)
@@ -92,6 +95,52 @@ func create(level_number, level_node):
 	grid.modulate = Color(1, 1, 1, 0.3)
 	level_root.add_child(grid)
 	
+	level_root.add_child(path)
+	var path_out = $path_out
+	var path_xform = path.get_relative_transform_to_parent(self)
+	var path_out_xform = path_out.get_relative_transform_to_parent(self).inverse()
+	var curve = Curve2D.new()
+	for i in range(path_out.curve.get_point_count() - 1):
+		curve.add_point(path_out.curve.get_point_position(i))
+	for i in range(path.curve.get_point_count()):
+		var point = path.curve.get_point_position(i)
+		curve.add_point(path_out_xform.xform(path_xform.xform(point)))
+	curve.add_point(path_out.curve.get_point_position(path_out.curve.get_point_count() - 1))
+	path_out.curve = curve
+	level_root.remove_child(path)
+	path.free()
+	
+	show_island_text()
+
+func plural(count, singular, plural):
+	if count == 1:
+		return singular
+	else:
+		return plural
+
+func count_word(count):
+	return ['none', 'one', 'two', 'three', 'four', 'five'][count]
+
+func _ready():
+	$story.visible = false
+	$scroll/hint_bg.visible = false
+
+func show_instructions():
+	show_next_story_line()
+
+func show_next_story_line():
+	if len(story_lines) == 0:
+		$story.visible = false
+		story_lines = null
+		$scroll/in_out.move_in()
+	else:
+		$story.visible = true
+		var parts = story_lines[0].split(" ", true, 1)
+		$story.text = parts[1]
+		$story.add_color_override("font_color", Color(parts[0]).darkened(0.3))
+		story_lines.remove(0)
+
+func show_island_text():
 	var island_sizes = get_island_sizes()
 	var size_counts = {}
 	for size in island_sizes:
@@ -117,48 +166,22 @@ func create(level_number, level_node):
 			var count = size_counts[size]
 			text += "\n— %s of %d %s" % [count_word(count), size, plural(size, 'tile', 'tiles')]
 	get_node("scroll/islands_count").text = text
-	
-	level_root.add_child(path)
-	var path_out = $path_out
-	var path_xform = path.get_relative_transform_to_parent(self)
-	var path_out_xform = path_out.get_relative_transform_to_parent(self).inverse()
-	var curve = Curve2D.new()
-	for i in range(path_out.curve.get_point_count() - 1):
-		curve.add_point(path_out.curve.get_point_position(i))
-	for i in range(path.curve.get_point_count()):
-		var point = path.curve.get_point_position(i)
-		curve.add_point(path_out_xform.xform(path_xform.xform(point)))
-	curve.add_point(path_out.curve.get_point_position(path_out.curve.get_point_count() - 1))
-	path_out.curve = curve
-	level_root.remove_child(path)
-	path.free()
-
-func plural(count, singular, plural):
-	if count == 1:
-		return singular
-	else:
-		return plural
-
-func count_word(count):
-	return ['none', 'one', 'two', 'three', 'four', 'five'][count]
-
-func _ready():
-	$scroll/hint_bg.visible = false
-
-func show_instructions():
-	$scroll/in_out.move_in()
 
 func _input(event):
 	if event is InputEventMouse:
-		var coords = (grid.to_local(event.position) / grid.cell_size).floor()
-		if not grid.get_used_rect().has_point(coords):
-			coords = null
-		if event is InputEventMouseMotion:
-			update_cursor(coords)
-		elif event is InputEventMouseButton and event.pressed and coords != null:
-			match event.button_index:
-				BUTTON_LEFT: toggle_guess(coords)
-				BUTTON_RIGHT: erase_guess(coords)
+		if story_lines != null:
+			if event is InputEventMouseButton and event.pressed:
+				show_next_story_line()
+		else:
+			var coords = (grid.to_local(event.position) / grid.cell_size).floor()
+			if not grid.get_used_rect().has_point(coords):
+				coords = null
+			if event is InputEventMouseMotion:
+				update_cursor(coords)
+			elif event is InputEventMouseButton and event.pressed and coords != null:
+				match event.button_index:
+					BUTTON_LEFT: toggle_guess(coords)
+					BUTTON_RIGHT: erase_guess(coords)
 
 func update_cursor(coords):
 	var help_text = ""

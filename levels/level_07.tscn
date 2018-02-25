@@ -9,7 +9,7 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 128, 768, 0, 0, 0, 0, 128, 640, 0, 0, 0, 0, 384, 384, 0, 0, 0, 0, 640, 384, 0, 0, 0, 0, 896, 128, 0, 0, 0, 0, 896, 0 )
 }
 
-[node name="Node" type="Node2D" index="0"]
+[node name="Node" type="Node2D"]
 
 [node name="land" type="TileMap" parent="." index="0"]
 
@@ -85,5 +85,26 @@ __meta__ = {
 [node name="path" type="Path2D" parent="." index="3"]
 
 curve = SubResource( 1 )
+
+[node name="story" type="Label" parent="." index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 320.0
+margin_top = 832.0
+margin_right = 766.0
+margin_bottom = 863.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "4a148c “Cap'n! I think I see a castle!”
+4e342e “Anything. As long as it helps us find them blasted islands.”"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 

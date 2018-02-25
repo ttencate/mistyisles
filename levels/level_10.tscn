@@ -9,7 +9,7 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 384, 1024, 0, 0, 0, 0, 384, 640, 0, 0, 0, 0, 576, 448, 0, 0, 0, 0, 576, 320, 0, 0, 0, 0, 384, 128, 0, 0, 0, 0, 384, 0 )
 }
 
-[node name="Node" type="Node2D" index="0"]
+[node name="Node" type="Node2D"]
 
 [node name="land" type="TileMap" parent="." index="0"]
 

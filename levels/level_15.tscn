@@ -86,4 +86,25 @@ __meta__ = {
 
 curve = SubResource( 1 )
 
+[node name="story" type="Label" parent="." index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 384.0
+margin_top = 1088.0
+margin_right = 824.0
+margin_bottom = 1119.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "4a148c “Cap'n! I see land beyond this mistbank!”
+4e342e “Navigator, get us round these isles. Time to head home.”"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
 
