@@ -10,13 +10,16 @@ signal moved_in
 signal moved_out
 
 func _ready():
+	target.visible = false
 	update_y_in(hidden_y)
 
 func move_in():
+	target.visible = true
 	interpolate_method(self, "update_y_in", target.position.y, visible_y, 0.5, TRANS_QUAD, EASE_OUT)
 	start()
 
 func move_out():
+	target.visible = true
 	interpolate_method(self, "update_y_out", target.position.y, hidden_y, 0.5, TRANS_QUAD, EASE_IN)
 	start()
 
@@ -31,4 +34,5 @@ func _on_in_out_tween_completed(object, key):
 		@":update_y_in":
 			emit_signal("moved_in")
 		@":update_y_out":
+			target.visible = false
 			emit_signal("moved_out")

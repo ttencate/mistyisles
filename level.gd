@@ -125,6 +125,8 @@ func count_word(count):
 
 func _ready():
 	$scroll/hint_bg.visible = false
+
+func show_instructions():
 	$scroll/in_out.move_in()
 
 func _input(event):

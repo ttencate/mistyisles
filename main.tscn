@@ -3,7 +3,7 @@
 [ext_resource path="res://main.gd" type="Script" id=1]
 [ext_resource path="res://sprites/water.svg" type="Texture" id=2]
 
-[node name="main" type="Node2D"]
+[node name="main" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -18,5 +18,16 @@ _sections_unfolded = [ "Region" ]
 [node name="level_root" type="Node2D" parent="." index="1"]
 
 _sections_unfolded = [ "Transform" ]
+
+[node name="scroll_tween" type="Tween" parent="level_root" index="0"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+[connection signal="tween_completed" from="level_root/scroll_tween" to="." method="_on_scroll_tween_tween_completed"]
 
 

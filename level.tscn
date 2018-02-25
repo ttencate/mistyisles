@@ -21,7 +21,7 @@ extra_spacing_bottom = -6
 font_data = ExtResource( 3 )
 _sections_unfolded = [ "Extra Spacing", "Font/fallback", "Settings" ]
 
-[node name="level" type="Node2D" index="0"]
+[node name="level" type="Node2D"]
 
 script = ExtResource( 1 )
 
@@ -118,7 +118,7 @@ _sections_unfolded = [ "custom_colors" ]
 [node name="solved_timer" type="Timer" parent="." index="2"]
 
 process_mode = 1
-wait_time = 3.0
+wait_time = 2.0
 one_shot = true
 autostart = false
 
