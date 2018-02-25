@@ -25,14 +25,14 @@ extents = Vector2( 448, 319.653 )
 
 bake_interval = 5.0
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 512, 1024, 0, 0, 0, 0, 512, 736 )
+"points": PoolVector2Array( 0, 0, 0, 0, 512, 1024, 0, 0, 0, 0, 512, 768 )
 }
 
 [sub_resource type="Curve2D" id=5]
 
 bake_interval = 5.0
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 512, 736, 0, 0, 0, 0, 512, 0 )
+"points": PoolVector2Array( 0, 0, 0, 0, 512, 768, 0, 0, 0, 0, 512, 0 )
 }
 
 [node name="level" type="Node2D"]
@@ -124,7 +124,9 @@ offset = Vector2( 0, 320 )
 [node name="hint_bg" type="Sprite" parent="scroll" index="2"]
 
 position = Vector2( 0, -160 )
+z_index = 1
 texture = ExtResource( 5 )
+_sections_unfolded = [ "Z Index" ]
 
 [node name="help_text" type="Label" parent="scroll/hint_bg" index="0"]
 

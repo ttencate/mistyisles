@@ -26,14 +26,14 @@ _sections_unfolded = [ "Font", "Settings" ]
 
 bake_interval = 5.0
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 512, 1152, 0, 0, 0, 0, 512, 768 )
+"points": PoolVector2Array( 0, 0, 0, 0, 512, 1152, 0, 0, 0, 0, 512, 832 )
 }
 
 [sub_resource type="Curve2D" id=4]
 
 bake_interval = 5.0
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 512, 768, 0, 0, 0, 0, 512, 0 )
+"points": PoolVector2Array( 0, 0, 0, 0, 512, 832, 0, 0, 0, 0, 512, 0 )
 }
 
 [node name="start_screen" type="Node2D"]
@@ -100,8 +100,9 @@ _sections_unfolded = [ "custom_colors", "custom_constants", "custom_fonts" ]
 [node name="hint_bg" type="Sprite" parent="." index="2"]
 
 position = Vector2( 512, 928 )
+z_index = 1
 texture = ExtResource( 3 )
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Transform", "Z Index" ]
 
 [node name="instructions" type="Label" parent="hint_bg" index="0"]
 

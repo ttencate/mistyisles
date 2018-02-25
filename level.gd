@@ -22,7 +22,7 @@ class ClueType:
 		self.land = land
 		self.neighbours = neighbours
 		self.help_text = help_text
-		
+	
 	static func is_land(tile, tile_set):
 		if tile < 0:
 			return false
@@ -54,9 +54,11 @@ func create(level_number, level_node):
 	land = level_node.get_node("land")
 	clues = level_node.get_node("clues")
 	grid = level_node.get_node("grid")
+	var path = level_node.get_node("path")
 	level_node.remove_child(land)
 	level_node.remove_child(clues)
 	level_node.remove_child(grid)
+	level_node.remove_child(path)
 	level_node.free()
 	
 	n = grid.get_used_rect().size
@@ -115,6 +117,21 @@ func create(level_number, level_node):
 			var count = size_counts[size]
 			text += "\n— %s of %d %s" % [count_word(count), size, plural(size, 'tile', 'tiles')]
 	get_node("scroll/islands_count").text = text
+	
+	level_root.add_child(path)
+	var path_out = $path_out
+	var path_xform = path.get_relative_transform_to_parent(self)
+	var path_out_xform = path_out.get_relative_transform_to_parent(self).inverse()
+	var curve = Curve2D.new()
+	for i in range(path_out.curve.get_point_count() - 1):
+		curve.add_point(path_out.curve.get_point_position(i))
+	for i in range(path.curve.get_point_count()):
+		var point = path.curve.get_point_position(i)
+		curve.add_point(path_out_xform.xform(path_xform.xform(point)))
+	curve.add_point(path_out.curve.get_point_position(path_out.curve.get_point_count() - 1))
+	path_out.curve = curve
+	level_root.remove_child(path)
+	path.free()
 
 func plural(count, singular, plural):
 	if count == 1:

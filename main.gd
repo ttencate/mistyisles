@@ -13,10 +13,19 @@ var old_screen_node
 
 var sailing_speed = 256
 
+func _ready():
+	var path_in = screen_node.get_node("path_in")
+	ship.get_parent().remove_child(ship)
+	path_in.add_child(ship)
+	ship.offset = 0
+	ship.get_node("tween_in").interpolate_method(self, "set_ship_offset",
+		0, path_in.curve.get_baked_length(),
+		path_in.curve.get_baked_length() / sailing_speed, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	ship.get_node("tween_in").start()
+
 func create_level(level_number):
 	var level_scene = load("res://levels/level_%02d.tscn" % level_number)
 	if not level_scene:
-		print("You win!") # TODO
 		return null
 	var level_node = preload("res://level.tscn").instance()
 	level_node.create(level_number, level_scene.instance())
@@ -33,7 +42,7 @@ func switch_screen(new_screen_node):
 	ship.get_parent().remove_child(ship)
 	path_out.add_child(ship)
 	ship.offset = 0
-	ship.get_node("tween_out").interpolate_property(ship, "offset",
+	ship.get_node("tween_out").interpolate_method(self, "set_ship_offset",
 		0, path_out.curve.get_baked_length(),
 		path_out.curve.get_baked_length() / sailing_speed, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	ship.get_node("tween_out").start()
@@ -51,8 +60,20 @@ func set_level_y(value):
 	level_root.position.y = value
 	water.region_rect = Rect2(0, -value, 1024, 1024)
 
-func set_ship_offset(value):
-	ship.offset = value
+func set_ship_offset(offset):
+	ship.offset = offset
+	var curve = ship.get_parent().curve
+	var from = curve.interpolate_baked(offset - 1)
+	var to = curve.interpolate_baked(offset + 1)
+	var angle = Vector2(0, -1).angle_to(to - from)
+	var texture
+	if angle < -0.2:
+		texture = preload("res://sprites/ship_left.svg")
+	elif angle > 0.2:
+		texture = preload("res://sprites/ship_right.svg")
+	else:
+		texture = preload("res://sprites/ship_up.svg")
+	ship.get_node("ship_sprite").texture = texture
 
 func level_solved():
 	switch_level(current_level + 1)
@@ -62,7 +83,7 @@ func _on_ship_tween_out_tween_completed(object, key):
 	ship.get_parent().remove_child(ship)
 	path_in.add_child(ship)
 	ship.offset = 0
-	ship.get_node("tween_in").interpolate_property(ship, "offset",
+	ship.get_node("tween_in").interpolate_method(self, "set_ship_offset",
 		0, path_in.curve.get_baked_length(),
 		path_in.curve.get_baked_length() / sailing_speed, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	ship.get_node("tween_in").start()
@@ -78,7 +99,11 @@ func _on_ship_tween_in_tween_completed(object, key):
 
 func switch_level(level_number):
 	current_level = level_number
-	switch_screen(create_level(current_level))
+	var next_screen = create_level(current_level)
+	if not next_screen:
+		next_screen = preload("res://end_screen.tscn").instance()
+		sailing_speed /= 2
+	switch_screen(next_screen)
 
 func _input(event):
 	if OS.has_feature("debug"):

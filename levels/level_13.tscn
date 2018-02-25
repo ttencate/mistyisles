@@ -1,8 +1,15 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://tileset.tres" type="TileSet" id=1]
 
-[node name="Node" type="Node2D"]
+[sub_resource type="Curve2D" id=1]
+
+bake_interval = 5.0
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 640, 1024, 0, 0, 0, 0, 640, 896, 0, 0, 0, 0, 384, 640, 0, 0, 0, 0, 384, 384, 0, 0, 0, 0, 192, 192, 0, 0, 0, 0, 192, 64, 0, 0, 0, 0, 256, 0 )
+}
+
+[node name="Node" type="Node2D" index="0"]
 
 [node name="land" type="TileMap" parent="." index="0"]
 
@@ -74,5 +81,9 @@ tile_data = PoolIntArray( 0, 33, 0, 1, 33, 0, 2, 33, 0, 3, 33, 0, 4, 33, 0, 6553
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="path" type="Path2D" parent="." index="3"]
+
+curve = SubResource( 1 )
 
 

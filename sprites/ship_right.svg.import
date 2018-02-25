@@ -7,10 +7,10 @@ path="res://.import/ship_right.svg-fd3da5e018b6e3ff7209caca2b862828.stex"
 [deps]
 
 source_file="res://sprites/ship_right.svg"
-source_md5="cca2928b033df9bb37d8bfe7402d8888"
+source_md5="5764d7460538580ed3da779624840ef9"
 
 dest_files=[ "res://.import/ship_right.svg-fd3da5e018b6e3ff7209caca2b862828.stex" ]
-dest_md5="11f7fa52d27d6e924fcab524dbbe8a12"
+dest_md5="9d4aed3bca5c3e1b46a5c4416436b8f3"
 
 [params]
 
