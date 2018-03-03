@@ -14,6 +14,8 @@ var old_screen_node
 var sailing_speed = 256
 
 func _ready():
+	OS.set_window_maximized(true)
+	
 	var path_in = screen_node.get_node("path_in")
 	ship.get_parent().remove_child(ship)
 	path_in.add_child(ship)
